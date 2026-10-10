@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dein Boo hat dich eingeladen 💌 · MyBoo</title>
+<meta name="description" content="Entdeckt gemeinsam eure Sprachen der Liebe – und bringt eure Beziehung auf die nächste Stufe.">
+<!-- Vorschau in WhatsApp & Co. (Crawler führen kein JavaScript aus, deshalb fest) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MyBoo">
+<meta property="og:title" content="Dein Boo hat dich eingeladen 💌">
+<meta property="og:description" content="Entdeckt gemeinsam eure Sprachen der Liebe – und bringt eure Beziehung auf die nächste Stufe.">
+<meta property="og:image" content="https://eloayoubi.github.io/myboo/og.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#FFF8F1">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FFF8F1; --ink: #2E2238; --grape: #6B5E70; --mist: #8A7D90;
+    --coral: #FF8A7A; --violet: #5B3FA3; --lavender: #ECE4FF; --sand: #F0E2D6; --white: #FFFFFF;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--cream); color: var(--ink); }
+  body {
+    font-family: Nunito, system-ui, -apple-system, sans-serif; font-weight: 500;
+    min-height: 100svh; display: flex; justify-content: center;
+    padding: max(28px, env(safe-area-inset-top)) 20px max(28px, env(safe-area-inset-bottom));
+  }
+  main { width: 100%; max-width: 420px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .icon { width: 112px; height: 112px; border-radius: 26px; box-shadow: 0 6px 0 var(--ink); animation: pop .5s cubic-bezier(.2,1.6,.4,1) both; }
+  h1 { font-family: Fredoka, Nunito, sans-serif; font-weight: 700; font-size: 30px; line-height: 1.15; margin: 26px 0 10px; }
+  .lead { font-size: 17px; line-height: 1.5; color: var(--grape); margin: 0 0 24px; }
+  .code { width: 100%; background: var(--lavender); border-radius: 20px; padding: 16px; margin-bottom: 20px; }
+  .code small { display: block; font-weight: 700; color: var(--violet); font-size: 13px; letter-spacing: .02em; }
+  .code strong { display: block; font-family: Fredoka, Nunito, sans-serif; font-size: 34px; letter-spacing: .12em; margin-top: 4px; }
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-height: 56px;
+    border-radius: 20px; font: 800 18px Nunito, sans-serif; text-decoration: none; cursor: pointer; border: 0;
+  }
+  .btn.primary { background: var(--coral); color: var(--white); box-shadow: 0 4px 0 var(--ink); }
+  .btn.primary:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--ink); }
+  .btn.secondary { background: var(--white); color: var(--ink); border: 2px solid var(--sand); margin-top: 12px; min-height: 50px; font-size: 16px; }
+  .note { font-size: 14px; color: var(--mist); margin: 14px 0 0; min-height: 20px; }
+  .bar { height: 4px; border-radius: 4px; background: var(--sand); overflow: hidden; margin-top: 10px; width: 100%; }
+  .bar i { display: block; height: 100%; width: 0; background: var(--coral); }
+  .bar.run i { animation: fill var(--wait) linear forwards; }
+  ol { text-align: left; padding: 0; margin: 28px 0 0; list-style: none; width: 100%; counter-reset: step; }
+  ol li { counter-increment: step; display: flex; gap: 12px; align-items: flex-start; font-size: 15px; line-height: 1.45; margin-bottom: 12px; }
+  ol li::before {
+    content: counter(step); flex: none; width: 26px; height: 26px; border-radius: 50%;
+    background: var(--white); border: 2px solid var(--sand); font-weight: 800; font-size: 13px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  footer { margin-top: auto; padding-top: 28px; font-size: 12px; color: var(--mist); }
+  [hidden] { display: none !important; }
+  @keyframes pop { from { transform: scale(.6); opacity: 0; } }
+  @keyframes fill { to { width: 100%; } }
+  @media (prefers-reduced-motion: reduce) { .icon, .bar.run i { animation: none; } }
+</style>
+</head>
+<body>
+<main>
+  <img class="icon" src="icon.svg" alt="MyBoo" width="112" height="112">
+  <h1 data-t="title">Dein Boo hat dich eingeladen 💌</h1>
+  <p class="lead" id="lead" data-t="lead">Entdeckt gemeinsam eure Sprachen der Liebe – und bringt eure Beziehung auf die nächste Stufe.</p>
+
+  <div class="code" id="codeBox" hidden>
+    <small data-t="codeLabel">Euer Code</small>
+    <strong id="code"></strong>
+  </div>
+
+  <a class="btn primary" id="get" href="#"><span data-t="get">MyBoo laden</span></a>
+  <div class="bar" id="bar" hidden><i></i></div>
+  <a class="btn secondary" id="open" href="#" hidden><span data-t="open">Schon installiert? In MyBoo öffnen</span></a>
+  <p class="note" id="note"></p>
+
+  <ol id="steps" hidden>
+    <li data-t="step1">MyBoo laden</li>
+    <li data-t="step2">Zurück hierher und „In MyBoo öffnen“ tippen – oder den Link in WhatsApp nochmal antippen</li>
+    <li data-t="step3">Namen eingeben, beitreten – ihr seid verbunden 💕</li>
+  </ol>
+
+  <footer>MyBoo · die Paar-App</footer>
+</main>
+<script>
+  // ── Einstellungen ────────────────────────────────────────────────────────────
+  // Bis zum Release: öffentlicher TestFlight-Link der Gruppe „Tester“. Leer = App Store.
+  const TESTFLIGHT_URL = '';
+  const APP_STORE_URL = 'https://apps.apple.com/app/id6820593702';
+  // Android ist noch nicht im Play Store. Später z. B. 'https://play.google.com/store/apps/details?id=com.myboo.myboo'.
+  const PLAY_URL = '';
+  // Kurz zeigen, dann einmal pro Code automatisch in den Store (wer die App hat, landet gar nicht hier).
+  const FORWARD_MS = 2500;
+  // ─────────────────────────────────────────────────────────────────────────────
+
+  const texts = {
+    de: {
+      store: 'Gleich geht’s zum App Store …',
+      copied: 'Code kopiert – in der App bei „Ich wurde eingeladen“ einfügen.',
+      android: 'MyBoo gibt’s bald auch für Android. Bis dahin: iPhone schnappen 💌',
+      desktop: 'Öffne diesen Link auf deinem iPhone.',
+      generic: 'MyBoo – die Paar-App mit Boo-Avataren, Missionen und euren Sprachen der Liebe.',
+    },
+    en: {
+      title: 'Your Boo invited you 💌',
+      lead: 'Discover your love languages together – and take your relationship to the next level.',
+      codeLabel: 'Your code',
+      get: 'Get MyBoo',
+      open: 'Already installed? Open in MyBoo',
+      step1: 'Get MyBoo',
+      step2: 'Come back here and tap “Open in MyBoo” – or tap the link in WhatsApp again',
+      step3: 'Enter your name, join – you’re connected 💕',
+      store: 'Taking you to the App Store …',
+      copied: 'Code copied – paste it under “I was invited” in the app.',
+      android: 'MyBoo for Android is coming soon. Until then: grab an iPhone 💌',
+      desktop: 'Open this link on your iPhone.',
+      generic: 'MyBoo – the couples app with Boo avatars, missions and your love languages.',
+    },
+  };
+  const lang = navigator.language && !navigator.language.toLowerCase().startsWith('de') ? 'en' : 'de';
+  const t = (key) => texts[lang][key] ?? texts.de[key];
+  if (lang === 'en') {
+    document.documentElement.lang = 'en';
+    document.querySelectorAll('[data-t]').forEach((el) => { if (texts.en[el.dataset.t]) el.textContent = texts.en[el.dataset.t]; });
+    document.title = texts.en.title + ' · MyBoo';
+  }
+
+  const raw = (new URLSearchParams(location.search).get('invite') || '').trim().toUpperCase();
+  const code = /^[A-Z0-9-]{4,16}$/.test(raw) ? raw : null;
+  const ua = navigator.userAgent;
+  const android = /Android/.test(ua);
+  // iPadOS meldet sich als Mac, hat aber Touch.
+  const ios = !android && (/iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1));
+  const store = ios ? (TESTFLIGHT_URL || APP_STORE_URL) : android ? PLAY_URL : '';
+
+  const $ = (id) => document.getElementById(id);
+  const note = (text) => { $('note').textContent = text; };
+  const get = $('get');
+  let timer = null;
+  const stop = () => { clearTimeout(timer); $('bar').hidden = true; };
+
+  if (code) {
+    $('code').textContent = code;
+    $('codeBox').hidden = false;
+    // Gleiches Schema wie AppConfig.appScheme; der Universal Link selbst öffnet die App auf dieser Domain nicht.
+    $('open').href = 'de.eloayoubi.myboo://join?invite=' + encodeURIComponent(code);
+    $('open').hidden = !(ios || android);
+    $('open').addEventListener('click', stop);
+  } else {
+    $('lead').textContent = t('generic');
+  }
+
+  $('steps').hidden = !code || !store;
+
+  if (store) {
+    get.href = store;
+    get.addEventListener('click', () => {
+      stop();
+      if (code && navigator.clipboard) navigator.clipboard.writeText(code).then(() => note(t('copied')), () => {});
+    });
+    const key = 'myboo-forwarded-' + (code || 'page');
+    let forwarded = false;
+    try { forwarded = sessionStorage.getItem(key) === '1'; sessionStorage.setItem(key, '1'); } catch (_) {}
+    if (code && ios && !forwarded) {
+      note(t('store'));
+      $('bar').style.setProperty('--wait', FORWARD_MS + 'ms');
+      $('bar').hidden = false;
+      $('bar').classList.add('run');
+      timer = setTimeout(() => { $('bar').hidden = true; note(''); location.href = store; }, FORWARD_MS);
+    }
+  } else {
+    get.hidden = true;
+    note(android ? t('android') : t('desktop'));
+  }
+</script>
+</body>
+</html>

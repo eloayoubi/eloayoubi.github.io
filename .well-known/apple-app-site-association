@@ -1,0 +1,12 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["GYJLSZ9DRM.de.eloayoubi.myboo"],
+        "components": [
+          { "/": "/myboo/*", "?": { "invite": "?*" }, "comment": "Einladungslinks der MyBoo-App" }
+        ]
+      }
+    ]
+  }
+}
